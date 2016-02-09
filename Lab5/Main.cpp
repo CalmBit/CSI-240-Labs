@@ -11,6 +11,8 @@ int main(int argc, char* argv[])
   populate(size, arr);
   sort(size, arr);
   display(size, arr);
+  delete[] arr;
+  return 0;
 }
 
 size_t promptSize()
