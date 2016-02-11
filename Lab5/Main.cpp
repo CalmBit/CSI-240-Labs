@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
   selection_sort(size, arr);
   display(size, arr);
   delete[] arr;
+  arr = nullptr;
   return 0;
 }
 
