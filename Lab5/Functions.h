@@ -23,7 +23,9 @@ size_t promptSize();
 
 void populate(size_t size, int *ptr);
 
-void sort(size_t size, int *ptr);
+void bubble_sort(size_t size, int *ptr);
+
+void selection_sort(size_t size, int *ptr);
 
 void display(size_t size, int *ptr);
 
