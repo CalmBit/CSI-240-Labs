@@ -34,7 +34,7 @@ class Widget
 public:
 	Widget( WidgetType type );
 	//add copy constructor
-   
+	Widget( const Widget& rhs );
 	string getModelName() const { return wModelName; };
    
 private:
@@ -42,7 +42,7 @@ private:
 	int wID;
 	string wModelName;
    //add static data member
-   
+	static int seqID;
 	void generateModelName();
 };
 
