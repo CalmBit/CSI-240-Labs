@@ -8,7 +8,7 @@
 const size_t DYNAMIC_ARRAY_INIT_VAL = 10;
 const int NUMBER_OF_LINES = 6;
 
-void fileMode();
+void fileMode(WordArray &array);
 void stdinMode();
 void resizeMode();
 
@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 				break;
 			case 'F':
 			case 'f':
-				fileMode();
+				fileMode(wordArray);
 				break;
 			case 'T':
 			case 't':
@@ -67,14 +67,31 @@ void dirtyClear()
 	std::cout << std::string(TERMINAL_SIZE, '\n');
 }
 
-void fileMode()
+void fileMode(WordArray &array)
 {
 	dirtyClear();
 	std::string filename;
 	std::cout << "What file are you looking to load? ";
 	std::getline(std::cin, filename);
-	//std::ifstream fileStream{filename};
-	std::cout << "Maybe someday I'll load " << filename << ", but not today" << std::endl;
+	std::ifstream fileStream{filename};
+	if(fileStream.bad())
+	{
+	  std::cerr << "Couldn't find file named " << filename << "!" << std::endl;
+	}
+	else
+	{
+	  while(!fileStream.eof() && array.getCount() < array.getCapacity())
+	  {
+	    std::string str;
+	    std::getline(std::cin, str);
+	    array.insertWordAtIndex(str, array.getCount());
+	  }
+	  if(array.getCount() == array.getCapacity())
+	  {
+	    std::cerr << "[WARNING] Array is at maximum capacity." << std::endl
+	              << "Data may have been truncated, and further data won't be added." << std::endl;
+	  }
+	}
 	holdForInput();
 }
 

@@ -11,7 +11,8 @@ public:
 	static WordArray constructFromOldArray(const WordArray &copy, size_t newCapacity);
 	bool insertWordAtIndex(const std::string &str, size_t index);
 	std::string getWordAtIndex(size_t index) const;
-
+	size_t getCount() { return m_count; }
+	size_t getCapacity() { return m_capacity; }
 	//Has the WordArray been flagged as bad?
 	bool getBadness() { return bad; }
 
