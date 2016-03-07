@@ -1,5 +1,3 @@
-#include "WordArray.h"
-
 /*
 	Author:  Ethan Brooks
 	Class:   CSI-240-02
@@ -14,16 +12,12 @@
 */
 
 #include "Common.h"
+#include "Modes.h"
+#include "WordArray.h"
 
 #include <iostream>
-#include <sstream>
-#include <fstream>
 
 const size_t DYNAMIC_ARRAY_INIT_VAL = 10;
-
-void fileMode(WordArray &wordArray);
-void stdinMode(WordArray &wordArray);
-void resizeMode(WordArray &wordArray);
 
 int main(int argc, char* argv[])
 {
@@ -39,6 +33,7 @@ int main(int argc, char* argv[])
 			<< "(F)ile based reading" << std::endl
 			<< "(T)ype some text yourself" << std::endl
 			<< "(R)esize the dynamic array" << std::endl
+			<< "(P)rint the array contents and capacity" << std::endl
 			<< "(Q)uit this program" << std::endl << std::endl;
 		std::cout << "? ";
 		currentSelection = std::cin.get();
@@ -51,6 +46,10 @@ int main(int argc, char* argv[])
 			case 'F':
 			case 'f':
 				fileMode(wordArray);
+				break;
+			case 'P':
+			case 'p':
+				printMode(wordArray);
 				break;
 			case 'T':
 			case 't':
@@ -68,83 +67,4 @@ int main(int argc, char* argv[])
 	} while (!quitRequested);
 
 	return 0;
-}
-
-void fileMode(WordArray &wordArray)
-{
-	dirtyClear();
-	std::string filename;
-	std::cout << "What file are you looking to load? ";
-	std::getline(std::cin, filename);
-	std::ifstream fileStream{filename};
-	if(fileStream.bad())
-	{
-	  std::cerr << "Couldn't find file named " << filename << "!" << std::endl;
-	}
-	else
-	{
-	  while(!fileStream.eof() && wordArray.getCount() < wordArray.getCapacity())
-	  {
-	    std::string str;
-		std::getline(fileStream, str);
-		if (str.length() == 0) continue;
-		if (wordArray.insertWordAtIndex(str, wordArray.getCount()))
-		{
-			std::cout << "Word added: " << str << std::endl;
-		}
-		else
-		{
-			std::cerr << "Word add failed..." << std::endl;
-		}
-	  }
-	  if(wordArray.getCount() == wordArray.getCapacity())
-	  {
-	    std::cerr << "[WARNING] Array is at maximum capacity." << std::endl
-	              << "Data may have been truncated, and further data won't be added." << std::endl;
-	  }
-	}
-	holdForInput();
-}
-
-void stdinMode(WordArray &wordArray)
-{
-	dirtyClear();
-	std::cout << "Type in a word, and press the return key." << std::endl 
-			  << "Press the return key on an empty line to finish." << std::endl;
-	bool quitRequested = false;
-	std::string buffer{};
-	while (!quitRequested)
-	{
-		std::getline(std::cin, buffer);
-		if (buffer == "") quitRequested = true;
-		else
-		{
-			if (wordArray.insertWordAtIndex(buffer, wordArray.getCount()))
-			{
-				std::cout << "Inserted word: " << buffer << std::endl;
-			}
-			else
-			{
-				std::cout << "[WARNING] Word not inserted. Your array might be full!" << std::endl;
-			}
-		}
-	}
-	holdForInput();
-}
-
-void resizeMode(WordArray &wordArray)
-{
-	dirtyClear();
-	size_t newSize = 0;
-	std::cout << "The current array size is " << wordArray.getCapacity() << " with " << wordArray.getCount() << " entries." << std::endl
-		<< "How large should the new array be? (zero to cancel) ";
-	std::cin >> newSize;
-	std::cin.get();
-	if (newSize == 0)
-	{
-		holdForInput();
-		return;
-	}
-	wordArray.resizeArray(newSize);
-	holdForInput();
 }

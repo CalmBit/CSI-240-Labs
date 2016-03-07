@@ -1,7 +1,3 @@
-Hello
-World
-This
-Is
-A
-Text
-File
+Hello World This Is
+
+A Text File
