@@ -33,6 +33,7 @@ WordArray::WordArray(const WordArray &rhs)
 WordArray::~WordArray()
 {
 	delete[](m_arrayPtr);
+	m_arrayPtr = nullptr;
 }
 
 bool WordArray::resizeArray(size_t newCapacity)
