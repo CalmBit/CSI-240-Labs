@@ -3,7 +3,9 @@
 
 #include "ListNode.h"
 
-void append(ListNode *head);
+#include <string>
+
+void append(ListNode *head, std::string data);
 size_t size(ListNode *head);
 void display(ListNode *head);
 void remove(ListNode *head);
