@@ -52,6 +52,7 @@ int main(int argc, char* argv[])
       std::cout << "R(e)move a value from a specific location in the list" << std::endl;
       std::cout << "(D)elete the list" << std::endl;
       std::cout << "D(i)splay the list" << std::endl;
+      std::cout << "Display the (S)ize of the list" << std::endl;
       std::cout << "(Q)uit the application" << std::endl;
       std::cout << "? ";
       std::cin >> selection;
@@ -94,6 +95,13 @@ int main(int argc, char* argv[])
         case 'i':
 	{
 	  display(head);
+	  break;
+	}
+        case 'S':
+        case 's':
+	{
+	  size_t temp = size(head);
+	  std::cout << "The list has " << temp << " node" << (temp > 1 ? "s" : "") << "." << std::endl;
 	  break;
 	}
 	case 'Q':
