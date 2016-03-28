@@ -22,8 +22,8 @@ definition and consequences of plagiarism and acknowledge that the assessor of t
 void append(ListNode *head, std::string data);
 size_t size(ListNode *head);
 void display(ListNode *head);
-void remove(ListNode *head);
-void remove(ListNode *head, size_t loc);
+ListNode *remove(ListNode *head);
+ListNode *remove(ListNode *head, size_t loc);
 void del(ListNode *head);
 
 #endif

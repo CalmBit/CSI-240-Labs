@@ -68,13 +68,12 @@ void display(ListNode *head)
   std::cout << "Total entries: " << iterator << std::endl;
 }
 
-void remove(ListNode *head)
+ListNode *remove(ListNode *head)
 {
   // If nothing is in the list, then we're gonna have trouble removing something!
   if(head == nullptr) std::cerr << "[ERROR] Can't remove anything from empty list!" << std::endl;
   // If only one element is in the list (the head element), then we can't really "remove" an element! Tell the user
   // to delete the list.
-  else if(head->next == nullptr) std::cerr << "[ERROR] Can't remove HEAD element - list must be deleted instead!" << std::endl;
   //Wow, there's more than one element! Remove the last one!
   else
   {
@@ -85,23 +84,24 @@ void remove(ListNode *head)
       prev = next;
       next = next->next;
     }
+    if(prev == head)
+    {
+      head = nullptr;
+    }
     std::cout << "Deleting node at end of list...";
     delete(next);
-    prev->next = nullptr;
+    prev->next = next = nullptr;
     std::cout << "done!";
   }
+  return head;
 }
 
-void remove(ListNode *head, size_t loc)
+ListNode *remove(ListNode *head, size_t loc)
 {
   size_t listSize = size(head);
   
   // If nothing is in the list, then we're gonna have trouble removing something!
   if(head == nullptr) std::cerr << "[ERROR] Can't remove anything from empty list!" << std::endl;
-  // If only one element is in the list (the head element), then we can't really "remove" an element! Tell the user
-  // to delete the list.
-  else if(head->next == nullptr || loc == 0) std::cerr << "[ERROR] Can't remove HEAD element - list must be deleted instead!" << std::endl;
-  
   // If the location refers to an invalid index, we can't delete it!
   else if(loc >= listSize) std::cerr << "[ERROR] Location passed to remove() was invalid! Can't remove non-existant element!" << std::endl;
   else
@@ -114,10 +114,13 @@ void remove(ListNode *head, size_t loc)
       next = next->next;
     }
     std::cout << "Deleting node at index " << loc << "...";
-    if(prev != head) prev->next = next->next;
+    if(loc == 0) head = head->next;
+    else prev->next = next->next;
     delete(next);
+    next = nullptr;
     std::cout << "done!" << std::endl;
   }
+  return head;
 }
 
 void del(ListNode *head)

@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
         case 'R':
         case 'r':
 	{  
-	  remove(head);
+	  head = remove(head);
 	  break;
 	}
         case 'E':
@@ -95,7 +95,7 @@ int main(int argc, char* argv[])
 	  size_t loc = 0;
 	  std::cin >> loc;
 	  std::cin.get();
-	  remove(head, loc);
+	  head = remove(head, loc);
 	  break;
 	}
         case 'D':
