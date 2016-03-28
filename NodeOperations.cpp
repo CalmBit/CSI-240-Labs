@@ -100,7 +100,7 @@ void remove(ListNode *head, size_t loc)
   if(head == nullptr) std::cerr << "[ERROR] Can't remove anything from empty list!" << std::endl;
   // If only one element is in the list (the head element), then we can't really "remove" an element! Tell the user
   // to delete the list.
-  else if(head->next == nullptr) std::cerr << "[ERROR] Can't remove HEAD element - list must be deleted instead!" << std::endl;
+  else if(head->next == nullptr || loc == 0) std::cerr << "[ERROR] Can't remove HEAD element - list must be deleted instead!" << std::endl;
   
   // If the location refers to an invalid index, we can't delete it!
   else if(loc >= listSize) std::cerr << "[ERROR] Location passed to remove() was invalid! Can't remove non-existant element!" << std::endl;
@@ -114,7 +114,7 @@ void remove(ListNode *head, size_t loc)
       next = next->next;
     }
     std::cout << "Deleting node at index " << loc << "...";
-    prev->next = next->next;
+    if(prev != head) prev->next = next->next;
     delete(next);
     std::cout << "done!" << std::endl;
   }
