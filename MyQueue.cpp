@@ -9,7 +9,7 @@ int MyQueue::m_dequeue()
 {
   if(stackTwo.empty())
   {
-    for(int i = 0;i < stackOne.size();i++)
+	while (!stackOne.empty())
     {
       stackTwo.push(stackOne.top());
       stackOne.pop();
@@ -24,7 +24,7 @@ int MyQueue::m_peek()
 {
   if(stackTwo.empty())
   {
-    for(int i = 0;i < stackOne.size();i++)
+	while (!stackOne.empty())
     {
       stackTwo.push(stackOne.top());
       stackOne.pop();
