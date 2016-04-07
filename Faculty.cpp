@@ -4,7 +4,7 @@
 
 Faculty::Faculty() : Person()
 {
-  setDiscipline(Discipline::COMPUTER_SCIENCE);
+  setDiscipline(COMPUTER_SCIENCE);
   std::cout << "Faculty object created using the default Faculty constructor" << std::endl;
 }
 
