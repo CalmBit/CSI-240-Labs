@@ -6,12 +6,12 @@
 class Faculty : public Person
 {
 private:
-  Discpline discipline;
+  Discpline department;
 public:
-  void setDiscipline(Discipline discipline) {this->discipline = discipline};
-  Discipline getDiscipline() {return this->discipline};
+  void setDepartment(Discipline department) {this->department = department;}
+  Discipline getDepartment() {return this->department;}
   Faculty();
-  Faculty(std::string name, Discipline discipline);
+  Faculty(std::string name, Discipline department);
   ~Faculty();
 };
 #endif
