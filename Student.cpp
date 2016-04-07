@@ -4,7 +4,7 @@
 
 Student::Student() : Person()
 {
-  setDiscipline(COMPUTER_SCIENCE);
+  setDiscipline(Discipline::COMPUTER_SCIENCE);
   std::cout << "Student object created using the default Student constructor" << std::endl;
 }
 

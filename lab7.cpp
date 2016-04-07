@@ -6,6 +6,9 @@
 #include <iostream>
 #include <string>
 
+#include "Student.hpp"
+#include "Faculty.hpp"
+
 using namespace std;
 
 enum Discipline {

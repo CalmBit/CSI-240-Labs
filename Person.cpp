@@ -14,7 +14,7 @@ Person::Person(std::string name)
   std::cout << "Person object created using the alternate Person constructor." << std::endl;
 }
 
-~Person::Person()
+Person::~Person()
 {
   std::cout << "Person object destroyed!" << std::endl;
 }
